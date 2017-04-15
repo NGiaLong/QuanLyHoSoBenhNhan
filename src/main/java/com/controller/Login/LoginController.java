@@ -1,4 +1,4 @@
-package com.fpt.controller.Login;
+package com.controller.Login;
 
 import java.util.List;
 
@@ -21,12 +21,6 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginForm(ModelMap model,HttpServletRequest request) {
-//		System.out.println("Hello");
-		context = new ClassPathXmlApplicationContext("Beans.xml");
-		NhanVienJDBC nhanVienJDBC = (NhanVienJDBC) context.getBean("nhanVienJDBC");
-		List<NhanVien> nVList = nhanVienJDBC.getAll();
-		model.addAttribute("nVList", nVList);
-		return "quanlynhanvien";
-		
+		return "login";	
 	}
 }

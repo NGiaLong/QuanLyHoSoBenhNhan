@@ -18,7 +18,7 @@ import com.model.*;
 public class NhanVienController {
 	private ApplicationContext context;
 	
-	@RequestMapping(value="/quanlynhanvien",method = RequestMethod.GET)
+	@RequestMapping(value="/quan-ly-nhan-vien",method = RequestMethod.GET)
 	public String staffmanagement(ModelMap model, HttpServletRequest request) {
 		System.out.println("1111111111111111111111111");
 		context = new ClassPathXmlApplicationContext("Beans.xml");
