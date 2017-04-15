@@ -13,6 +13,8 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginForm(HttpServletRequest request) {
+		System.out.println("Hello");
 		return "login";
+		
 	}
 }
