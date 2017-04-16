@@ -116,85 +116,51 @@
 				href="/LibraryManagement/student-management"> <span
 					data-toggle="collapse" href="#sub-item-2"><svg
 							class="glyph stroked chevron-down"> <use
-							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý độc giả
+							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý bệnh nhân
 			</a>
 				<ul class="children collapse" id="sub-item-2">
 					<li><a class=""
 						href="/LibraryManagement/deactivated-student-management"> <svg
 								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Ngừng hoạt động
+								xlink:href="#stroked-chevron-right"></use></svg> Danh sách bệnh nhân
+					</a></li>
+					<li><a class=""
+						href="/LibraryManagement/deactivated-student-management"> <svg
+								class="glyph stroked chevron-right"> <use
+								xlink:href="#stroked-chevron-right"></use></svg> Thêm bệnh nhân
 					</a></li>
 				</ul></li>
 			<li class="parent "><a href="/LibraryManagement/Book"> <span
 					data-toggle="collapse" href="#sub-item-3"><svg
 							class="glyph stroked chevron-down"> <use
-							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý sách
+							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý bệnh án
 			</a>
 				<ul class="children collapse" id="sub-item-3">
 					<li><a class="" href="/LibraryManagement/Book/add"> <svg
 								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Thêm sách
+								xlink:href="#stroked-chevron-right"></use></svg> Danh sách bệnh án
 					</a></li>
 					<li><a class="" href="/LibraryManagement/Book/uploadExcel"> <svg
 								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Import sách mới
-					</a></li>
-					<li><a class="" href="/LibraryManagement/Book/remain"> <svg
-								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Sách còn trong kho
-					</a></li>
+								xlink:href="#stroked-chevron-right"></use></svg> Thêm bệnh án
+					</a></li>					
 				</ul></li>
 			<li class="parent "><a href="/LibraryManagement/Category"> <span
 					data-toggle="collapse" href="#sub-item-5"><svg
 							class="glyph stroked chevron-down"> <use
-							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý thể loại sách
+							xlink:href="#stroked-chevron-down"></use></svg></span> Thống kê
 			</a>
 				<ul class="children collapse" id="sub-item-5">
 					<li><a class="" href="/LibraryManagement/Category/add"> <svg
 								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Thêm thể loại
+								xlink:href="#stroked-chevron-right"></use></svg> Thống kê bệnh án
 					</a></li>
 					<li><a class="" href="/LibraryManagement/Category"> <svg
 								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Danh sách thể loại
+								xlink:href="#stroked-chevron-right"></use></svg> Thống kê bệnh nhân
 					</a></li>
 				</ul></li>
-			<li class="parent "><a href="/LibraryManagement/Order"> <span
-					data-toggle="collapse" href="#sub-item-4"><svg
-							class="glyph stroked chevron-down"> <use
-							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý mượn
-			</a>
-				<ul class="children collapse" id="sub-item-4">
-					<li><a class="" href="/LibraryManagement/Order/Add"> <svg
-								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Tạo mới mượn sách
-					</a></li>
-					<li><a class="" href="/LibraryManagement/Order"> <svg
-								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Danh sách mượn sách
-					</a></li>
-					<li><a class="" href="/LibraryManagement/Order/ExpiredHistory"> <svg
-								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Danh sách quá hạn
-					</a></li>
-				</ul></li>
-			<li role="presentation" class="divider"></li>
-			
-				<li class="parent "><a href="/LibraryManagement/Order/OrderList"> <span
-					data-toggle="collapse" href="#sub-item-4"><svg
-							class="glyph stroked chevron-down"> <use
-							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý mượn
-			</a>
-				<ul class="children collapse" id="sub-item-4">					
-					<li><a class="" href="/LibraryManagement/Order/OrderList"> <svg
-								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Sách đang mượn
-					</a></li>
-					<li><a class="" href="/LibraryManagement/Order/OrderHistory"> <svg
-								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Lịch sử mượn sách
-					</a></li>
-				</ul></li>
+
 			
 		</ul>
 
