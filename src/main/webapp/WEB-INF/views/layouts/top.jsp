@@ -100,7 +100,7 @@
 		<ul class="nav menu">
 			
 			<li class="parent "><a
-				href="/LibraryManagement/staff-management"> <span
+				href="/QuanLyHoSoBenhNhan/quanlynhanvien"> <span
 					data-toggle="collapse" href="#sub-item-1"><svg
 							class="glyph stroked chevron-down"> <use
 							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý nhân viên
