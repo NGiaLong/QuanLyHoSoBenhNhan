@@ -15,16 +15,24 @@ import com.model.DAO.NhanVien.NhanVienJDBC;
 import com.model.*;
 
 @Controller
+@RequestMapping(value="/nhan-vien")
 public class NhanVienController {
 	private ApplicationContext context;
 	
-	@RequestMapping(value="/quan-ly-nhan-vien",method = RequestMethod.GET)
-	public String staffmanagement(ModelMap model, HttpServletRequest request) {
-		System.out.println("1111111111111111111111111");
+	@RequestMapping(method = RequestMethod.GET)
+	public String quanLyNhanVien(ModelMap model, HttpServletRequest request) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		NhanVienJDBC nhanVienJDBC = (NhanVienJDBC) context.getBean("nhanVienJDBC");
-		List<NhanVien> nVList = nhanVienJDBC.getAll();
+		List<NhanVien> nVList = nhanVienJDBC.getAllActive();
 		model.addAttribute("nVList", nVList);
 		return "quanlynhanvien";
+	}
+	@RequestMapping(value="/ngung-hoat-dong",method = RequestMethod.GET)
+	public String staffmanagement(ModelMap model, HttpServletRequest request) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		NhanVienJDBC nhanVienJDBC = (NhanVienJDBC) context.getBean("nhanVienJDBC");
+		List<NhanVien> nVList = nhanVienJDBC.getAllDeActive();
+		model.addAttribute("nVList", nVList);
+		return "nhanvienngunghoatdong";
 	}
 }

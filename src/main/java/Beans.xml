@@ -21,6 +21,10 @@
 	<bean id="nhanVienJDBC" class="com.model.DAO.NhanVien.NhanVienJDBC">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	<!-- Definition for ChucVuJDBCTemplate bean -->
+	<bean id="chucVuJDBC" class="com.model.DAO.ChucVu.ChucVuJDBC">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 	
 	
 </beans>

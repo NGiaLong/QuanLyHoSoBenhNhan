@@ -16,19 +16,10 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<h1>QUẢN LÝ NHÂN VIÊN</h1>
+		<h1>NGƯNG HOẠT ĐỘNG</h1>
 	</div>
 	<hr>
 	<div class="content">
-		<div class="row">
-			<div class="col-lg-10"></div>
-			<div class="col-lg-2">
-				<a href="/LibraryManagement/add-staff"><input
-					class="btn btn-primary btn-large btn-block" type="submit"
-					value="Tạo nhân viên"></a>
-
-			</div>
-		</div>
 		<div>
 			</br>
 		</div>
@@ -38,12 +29,6 @@
 					<th>STT</th>
 					<th>Mã nhân viên</th>
 					<th>Tên nhân viên</th>
-					<th>Giới tính</th>
-					<th>Ngày sinh</th>
-					<th>Địa chỉ</th>
-					<th>Số điện thoại</th>
-					<th>Chức vụ</th>
-					<th></th>
 					<th></th>
 				</thead>
 				<tbody>
@@ -55,21 +40,7 @@
 							<td><%=i%></td>
 							<td>${listValue.getMaNhanVien()}</td>
 							<td>${listValue.getTenNhanVien()}</td>
-							<td><c:choose>
-									<c:when test="${listValue.isGioiTinh() }">
-										<c:out value="Nam"></c:out>
-									</c:when>
-									<c:otherwise>
-										<c:out value="Nữ"></c:out>
-									</c:otherwise>
-								</c:choose></td>
-
-							<td>${listValue.getNgaySinh() }</td>
-							<td>${listValue.getDiaChi() }</td>
-							<td>${listValue.getSoDienThoai() }</td>
-							<td>${listValue.getMaChucVu() }</td>
-							<td><a href="" class="btn btn-primary btn-block">Sửa </a></td>
-							<td><a href="" class="btn btn-warning btn-block">Ngưng
+							<td><a href="" class="btn btn-info btn-block">Tái hoạt động
 									hoạt động</a></td>
 						</tr>
 						<%
