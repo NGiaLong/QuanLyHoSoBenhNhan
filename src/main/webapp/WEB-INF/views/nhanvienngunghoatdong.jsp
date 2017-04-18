@@ -16,6 +16,13 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
+		<br>
+		<c:if test="${success != null }">
+			<div class="alert alert-success">${success }</div>
+		</c:if>
+		<c:if test="${error != null }">
+			<div class="alert alert-danger">${error }</div>
+		</c:if>
 		<h1>NGƯNG HOẠT ĐỘNG</h1>
 	</div>
 	<hr>
@@ -40,8 +47,9 @@
 							<td><%=i%></td>
 							<td>${listValue.getMaNhanVien()}</td>
 							<td>${listValue.getTenNhanVien()}</td>
-							<td><a href="" class="btn btn-info btn-block">Tái hoạt động
-									hoạt động</a></td>
+							<td><a
+								href="/QuanLyHoSoBenhNhan/nhan-vien/tai-hoat-dong/${listValue.getMaNhanVien()}"
+								class="btn btn-info btn-block">Tái hoạt động hoạt động</a></td>
 						</tr>
 						<%
 							i++;

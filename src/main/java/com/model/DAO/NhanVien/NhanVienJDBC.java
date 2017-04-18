@@ -20,7 +20,7 @@ public class NhanVienJDBC implements NhanVienDAO {
 	
 	@Override
 	public List<NhanVien> getAllActive(){
-		String sql = "SELECT * from NHANVIEN where TinhTrang = 1";
+		String sql = "select * from NHANVIEN nv left join CHUCVU cv on nv.MaChucVu = cv.MaChucVu where nv.TinhTrang = 1";
 		try {
 			List<NhanVien> listNhanVien = jdbcTemplateObject.query(sql, new NhanVienMapper());			
 			return listNhanVien;
@@ -32,7 +32,7 @@ public class NhanVienJDBC implements NhanVienDAO {
 	
 	@Override
 	public List<NhanVien> getAllDeActive(){
-		String sql = "SELECT * from NHANVIEN where TinhTrang = 0";
+		String sql = "select * from NHANVIEN nv left join CHUCVU cv on nv.MaChucVu = cv.MaChucVu where nv.TinhTrang = 0";
 		try {
 			List<NhanVien> listNhanVien = jdbcTemplateObject.query(sql, new NhanVienMapper());			
 			return listNhanVien;
@@ -40,6 +40,18 @@ public class NhanVienJDBC implements NhanVienDAO {
 			System.out.println(ex.getMessage());
 			return null;
 		}
+	}
+	
+	@Override
+	public int deactivateById(String maNhanVien){
+		String sql = "update NHANVIEN set TinhTrang = '0' where MaNhanVien = '" + maNhanVien + "'";
+		return jdbcTemplateObject.update(sql);	
+	}
+	
+	@Override
+	public int activeById(String maNhanVien){
+		String sql = "update NHANVIEN set TinhTrang = '1' where MaNhanVien = '" + maNhanVien + "'";
+		return jdbcTemplateObject.update(sql);	
 	}
 	
 }

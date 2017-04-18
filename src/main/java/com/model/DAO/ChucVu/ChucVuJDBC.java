@@ -13,9 +13,14 @@ public class ChucVuJDBC implements ChucVuDAO {
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplateObject;
 	
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
+	}
+	
 	@Override
 	public List<ChucVu> getAll(){
-		String sql="";
+		String sql="select * from CHUCVU";
 		try{
 			List<ChucVu> listChucVu = jdbcTemplateObject.query(sql, new ChucVuMapper());
 			return listChucVu;

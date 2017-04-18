@@ -18,6 +18,7 @@ public class NhanVienMapper implements RowMapper<NhanVien> {
 		nhanVien.setDiaChi(rs.getString(6));
 		nhanVien.setSoDienThoai(rs.getString(7));
 		nhanVien.setMaChucVu(rs.getString(8));
+		nhanVien.setChucVu(rs.getString("TenChucVu"));
 		nhanVien.setTinhTrang(rs.getBoolean(9));
 		return nhanVien;
 	}

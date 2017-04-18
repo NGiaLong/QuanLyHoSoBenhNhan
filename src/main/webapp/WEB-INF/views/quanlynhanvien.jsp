@@ -16,6 +16,13 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
+	<br>
+	<c:if test="${success != null }">
+			<div class="alert alert-success">${success }</div>
+		</c:if>
+		<c:if test="${error != null }">
+			<div class="alert alert-danger">${error }</div>
+		</c:if>
 		<h1>QUẢN LÝ NHÂN VIÊN</h1>
 	</div>
 	<hr>
@@ -67,9 +74,9 @@
 							<td>${listValue.getNgaySinh() }</td>
 							<td>${listValue.getDiaChi() }</td>
 							<td>${listValue.getSoDienThoai() }</td>
-							<td>${listValue.getMaChucVu() }</td>
+							<td>${listValue.getChucVu() }</td>
 							<td><a href="" class="btn btn-primary btn-block">Sửa </a></td>
-							<td><a href="" class="btn btn-warning btn-block">Ngưng
+							<td><a href="/QuanLyHoSoBenhNhan/nhan-vien/ngung-hoat-dong/${listValue.getMaNhanVien()}" class="btn btn-warning btn-block">Ngưng
 									hoạt động</a></td>
 						</tr>
 						<%

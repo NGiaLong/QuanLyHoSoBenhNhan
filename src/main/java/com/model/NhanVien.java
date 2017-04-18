@@ -9,7 +9,15 @@ public class NhanVien{
 	private String diaChi;
 	private String soDienThoai;
 	private String maChucVu;
+	private String chucVu;
 	private boolean tinhTrang;
+	
+	public String getChucVu() {
+		return chucVu;
+	}
+	public void setChucVu(String chucVu) {
+		this.chucVu = chucVu;
+	}
 	public String getMaNhanVien() {
 		return maNhanVien;
 	}
@@ -65,7 +73,7 @@ public class NhanVien{
 		this.tinhTrang = tinhTrang;
 	}
 	public NhanVien(String maNhanVien, String tenNhanVien, String matKhau, boolean gioiTinh, String ngaySinh,
-			String diaChi, String soDienThoai, String maChucVu, boolean tinhTrang) {
+			String diaChi, String soDienThoai, String maChucVu, String chucVu, boolean tinhTrang) {
 		super();
 		this.maNhanVien = maNhanVien;
 		this.tenNhanVien = tenNhanVien;
@@ -75,6 +83,7 @@ public class NhanVien{
 		this.diaChi = diaChi;
 		this.soDienThoai = soDienThoai;
 		this.maChucVu = maChucVu;
+		this.chucVu = chucVu;
 		this.tinhTrang = tinhTrang;
 	}
 	public NhanVien(){
