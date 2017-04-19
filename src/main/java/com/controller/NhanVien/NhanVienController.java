@@ -46,8 +46,9 @@ public class NhanVienController {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		NhanVienJDBC nhanVienJDBC = (NhanVienJDBC) context.getBean("nhanVienJDBC");
 		int xoa = nhanVienJDBC.deactivateById(nvID);
+		NhanVien nv = nhanVienJDBC.getNVByMaNV(nvID);
 		if(xoa == 1){
-			redirectAttrs.addFlashAttribute("success", "Ngưng hoạt động nhân viên "+nvID+" thành công");
+			redirectAttrs.addFlashAttribute("success", "Ngưng hoạt động nhân viên "+nv.getTenNhanVien()+" thành công");
 		}else{
 			redirectAttrs.addFlashAttribute("error", "Ngưng hoạt động nhân viên thất bại");
 		}
@@ -58,8 +59,9 @@ public class NhanVienController {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		NhanVienJDBC nhanVienJDBC = (NhanVienJDBC) context.getBean("nhanVienJDBC");
 		int xoa = nhanVienJDBC.activeById(nvID);
+		NhanVien nv = nhanVienJDBC.getNVByMaNV(nvID);
 		if(xoa == 1){
-			redirectAttrs.addFlashAttribute("success", "Tái hoạt động nhân viên "+nvID+" thành công");
+			redirectAttrs.addFlashAttribute("success", "Tái hoạt động nhân viên "+nv.getTenNhanVien() +" thành công");
 		}else{
 			redirectAttrs.addFlashAttribute("error", "Tái hoạt động nhân viên thất bại");
 		}

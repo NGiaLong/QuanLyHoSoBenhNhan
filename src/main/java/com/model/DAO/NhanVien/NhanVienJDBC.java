@@ -54,4 +54,16 @@ public class NhanVienJDBC implements NhanVienDAO {
 		return jdbcTemplateObject.update(sql);	
 	}
 	
+	@Override
+	public NhanVien getNVByMaNV(String maNV){
+		String sql = "select * from NHANVIEN nv left join CHUCVU cv on nv.MaChucVu = cv.MaChucVu where nv.MaNhanVien = ?";
+		try {
+			NhanVien nhanVien = jdbcTemplateObject.queryForObject(sql, new Object[]{maNV} ,new NhanVienMapper());			
+			return nhanVien;
+		} catch (NullPointerException ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}
+	}
+	
 }
