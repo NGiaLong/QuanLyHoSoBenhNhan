@@ -33,21 +33,41 @@ public class ThongKeBenhAnJDBC implements ThongKeBenhAnDAO {
 	}
 
 	@Override
-	public List<ThongKeBenhAn> getByDate(Date date) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ThongKeBenhAn> getByDate(String date) {
+		String sql = "SELECT ba.MaBenhAnChiTiet, nv.MaNhanVien, nv.TenNhanVien, bn.MaBenhNhan,bn.TenBenhNhan, ba.NgayKham, ba. GioKham"
+				+ " FROM dbo.BENHANCHITIET ba, dbo.BENHNHAN bn, dbo.NHANVIEN nv WHERE ba.MaBenhNhan = bn.MaBenhNhan AND ba.MaNhanVienKham = nv.MaNhanVien AND ba.NgayKham = '"+date+"'";
+		try {
+			List<ThongKeBenhAn> listTKBenhAn = jdbcTemplateObject.query(sql, new ThongKeBenhAnMapper());
+			return listTKBenhAn;
+		} catch (NullPointerException ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}
 	}
 
 	@Override
 	public List<ThongKeBenhAn> getByMonth(int month, int year) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT ba.MaBenhAnChiTiet, nv.MaNhanVien, nv.TenNhanVien, bn.MaBenhNhan,bn.TenBenhNhan, ba.NgayKham, ba. GioKham"
+				+ " FROM dbo.BENHANCHITIET ba, dbo.BENHNHAN bn, dbo.NHANVIEN nv WHERE ba.MaBenhNhan = bn.MaBenhNhan AND ba.MaNhanVienKham = nv.MaNhanVien";
+		try {
+			List<ThongKeBenhAn> listTKBenhAn = jdbcTemplateObject.query(sql, new ThongKeBenhAnMapper());
+			return listTKBenhAn;
+		} catch (NullPointerException ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}
 	}
 
 	@Override
 	public List<ThongKeBenhAn> getByYear(int year) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT ba.MaBenhAnChiTiet, nv.MaNhanVien, nv.TenNhanVien, bn.MaBenhNhan,bn.TenBenhNhan, ba.NgayKham, ba. GioKham"
+				+ " FROM dbo.BENHANCHITIET ba, dbo.BENHNHAN bn, dbo.NHANVIEN nv WHERE ba.MaBenhNhan = bn.MaBenhNhan AND ba.MaNhanVienKham = nv.MaNhanVien";
+		try {
+			List<ThongKeBenhAn> listTKBenhAn = jdbcTemplateObject.query(sql, new ThongKeBenhAnMapper());
+			return listTKBenhAn;
+		} catch (NullPointerException ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}
 	}
-
 }

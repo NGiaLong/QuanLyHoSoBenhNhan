@@ -21,9 +21,10 @@
 	<hr>
 	<div class="content">
 		<div class="row">
-			<form action="thongkebenhan" method="post">
+			<form action="benh-an" method="post">
 				<div class="col-lg-12 form-inline">
-					Chọn ngày: <input type="text" id="dateThongKeBenhAn"
+					Chọn ngày: 
+						<input type="text" id="dateThongKeBenhAn"
 						name="dateThongKeBenhAn"
 						class="date-picker searchField form-control">
 						<input type="text" id="dateThongKeBenhAn"

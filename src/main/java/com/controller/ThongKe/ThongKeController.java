@@ -1,6 +1,8 @@
 package com.controller.ThongKe;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +29,7 @@ public class ThongKeController {
 	private ApplicationContext context;
 
 	@RequestMapping(value = "/benh-an", method = RequestMethod.GET)
-	public String staffmanagement(ModelMap model, HttpServletRequest request) {
+	public String getListTKBenhAn(ModelMap model, HttpServletRequest request) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		ThongKeBenhAnJDBC thongkeJDBC = (ThongKeBenhAnJDBC) context.getBean("thongKeBenhAnJDBC");						
 		List<ThongKeBenhAn> benhAnList = thongkeJDBC.getList();		
@@ -35,6 +37,29 @@ public class ThongKeController {
 		return "thongkebenhan";
 	}
 	
-	
+	@RequestMapping(value = "/benh-an", method = RequestMethod.POST)
+	public String getListTKBenhAnByDate(HttpServletRequest request, ModelMap model) throws ParseException {		
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		ThongKeBenhAnJDBC thongkeJDBC = (ThongKeBenhAnJDBC) context.getBean("thongKeBenhAnJDBC");
+		List<ThongKeBenhAn> benhAnList;
+		String date = request.getParameter("dateThongKeBenhAn");
+		if (date != null && !"".equals(date)) {
+			int arrLength = date.split("/").length;
+			if(arrLength==1) benhAnList = thongkeJDBC.getByYear(Integer.parseInt(date));
+			if(arrLength==2) benhAnList = thongkeJDBC.getByMonth(Integer.parseInt(date.split("/")[0]), Integer.parseInt(date.split("/")[1]));
+			if(arrLength==3){				
+				Date dateResult = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+				String dateString = new SimpleDateFormat("yyyy-MM-dd").format(dateResult);
+				System.out.println(dateString);
+				benhAnList = thongkeJDBC.getByDate(dateString); 
+			}
+			else benhAnList = thongkeJDBC.getList();
+			System.out.println(arrLength);
+		} else {
+			benhAnList = thongkeJDBC.getList();
+		}
+		model.addAttribute("benhAnList",benhAnList);
+		return "thongkebenhan";
+	}
 	
 }

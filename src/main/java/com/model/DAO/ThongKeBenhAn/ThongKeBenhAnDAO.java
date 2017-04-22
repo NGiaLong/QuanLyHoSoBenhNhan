@@ -7,7 +7,7 @@ import com.model.ThongKeBenhAn;;
 
 public interface ThongKeBenhAnDAO {
 	public List<ThongKeBenhAn> getList();
-	public List<ThongKeBenhAn> getByDate(Date date);
+	public List<ThongKeBenhAn> getByDate(String date);
 	public List<ThongKeBenhAn> getByMonth(int month, int year);
 	public List<ThongKeBenhAn> getByYear(int year);
 }
