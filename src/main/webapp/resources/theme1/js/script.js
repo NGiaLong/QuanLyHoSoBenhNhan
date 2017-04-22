@@ -59,17 +59,23 @@ $(document).ready(
 			});
 			$("#date-option").change(function() {
 				var selected = this.value;
-				if(selected == 0) {
+				if (selected == 0) {
 					console.log(selected);
-					$('.searchField').addClass('date-picker').removeClass('date-picker-year date-picker-month');
+					$('.date-picker').show();
+					$('.date-picker-year').hide();
+					$('.date-picker-month').hide();
 				}
-				if(selected == 1) {
+				if (selected == 1) {
 					console.log(selected);
-					$('.searchField').addClass('date-picker-month').removeClass('date-picker-year date-picker');
+					$('.date-picker-month').show();
+					$('.date-picker-year').hide();
+					$('.date-picker').hide();
 				}
-				if(selected == 2) {
+				if (selected == 2) {
 					console.log(selected);
-					$('.searchField').addClass('date-picker-year').removeClass('date-picker date-picker-month');
+					$('.date-picker-year').show();
+					$('.date-picker').hide();
+					$('.date-picker-month').hide();
 				}
 			});
 		});

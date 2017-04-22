@@ -25,7 +25,15 @@
 				<div class="col-lg-12 form-inline">
 					Chọn ngày: <input type="text" id="dateThongKeBenhAn"
 						name="dateThongKeBenhAn"
-						class="date-picker-year searchField form-control"> <select
+						class="date-picker searchField form-control">
+						<input type="text" id="dateThongKeBenhAn"
+						name="dateThongKeBenhAn" style="display:none;"
+						class="date-picker-month  searchField form-control">
+						<input type="text" id="dateThongKeBenhAn"
+						name="dateThongKeBenhAn" style="display:none;"
+						class="date-picker-year searchField form-control">
+						
+						 <select
 						class="form-control" name="dateType" id="date-option">
 						<option value="0">Theo ngày</option>
 						<option value="1">Theo tháng</option>

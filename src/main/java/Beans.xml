@@ -25,7 +25,10 @@
 	<bean id="chucVuJDBC" class="com.model.DAO.ChucVu.ChucVuJDBC">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
+	<!-- Definition for ThongKeBenhAnJDBCTemplate bean -->
+	<bean id="thongKeBenhAnJDBC" class="com.model.DAO.ThongKeBenhAn.ThongKeBenhAnJDBC">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 	
 	
 </beans>
