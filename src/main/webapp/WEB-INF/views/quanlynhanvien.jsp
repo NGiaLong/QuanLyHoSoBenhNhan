@@ -10,14 +10,16 @@
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 	<div class="row">
 		<ol class="breadcrumb">
-			<li><a href="#"><svg class="glyph stroked home">
+			<li><a href=""><svg class="glyph stroked home">
 						<use xlink:href="#stroked-home"></use></svg></a></li>
+			<li><a href="/QuanLyHoSoBenhNhan/nhan-vien">Quản lý nhân
+					viên</a></li>
 		</ol>
 	</div>
 	<!--/.row-->
 	<div class="header">
-	<br>
-	<c:if test="${success != null }">
+		<br>
+		<c:if test="${success != null }">
 			<div class="alert alert-success">${success }</div>
 		</c:if>
 		<c:if test="${error != null }">
@@ -30,7 +32,7 @@
 		<div class="row">
 			<div class="col-lg-10"></div>
 			<div class="col-lg-2">
-				<a href="/LibraryManagement/add-staff"><input
+				<a href="/QuanLyHoSoBenhNhan/nhan-vien/them-nhan-vien"><input
 					class="btn btn-primary btn-large btn-block" type="submit"
 					value="Tạo nhân viên"></a>
 
@@ -75,9 +77,10 @@
 							<td>${listValue.getDiaChi() }</td>
 							<td>${listValue.getSoDienThoai() }</td>
 							<td>${listValue.getChucVu() }</td>
-							<td><a href="" class="btn btn-primary btn-block">Sửa </a></td>
-							<td><a href="/QuanLyHoSoBenhNhan/nhan-vien/ngung-hoat-dong/${listValue.getMaNhanVien()}" class="btn btn-warning btn-block">Ngưng
-									hoạt động</a></td>
+							<td><a href="/QuanLyHoSoBenhNhan/nhan-vien/sua-nhan-vien/${listValue.getMaNhanVien()}" class="btn btn-primary btn-block">Sửa </a></td>
+							<td><a
+								href="/QuanLyHoSoBenhNhan/nhan-vien/ngung-hoat-dong/${listValue.getMaNhanVien()}"
+								class="btn btn-warning btn-block">Ngưng hoạt động</a></td>
 						</tr>
 						<%
 							i++;
