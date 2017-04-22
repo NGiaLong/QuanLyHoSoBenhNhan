@@ -67,4 +67,23 @@ public class NhanVienController {
 		}
 		return "redirect:/nhan-vien/ngung-hoat-dong";
 	}
+	@RequestMapping(value = "/them-chuc-vu", method = RequestMethod.GET)
+	public String themChucVu(ModelMap model, HttpServletRequest request,RedirectAttributes redirectAttrs) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		return "themchucvu";
+	}
+	
+	@RequestMapping(value = "/them-nhan-vien", method = RequestMethod.GET)
+	public String themNhanVien(ModelMap model, HttpServletRequest request, RedirectAttributes redirectAttrs){
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		
+		return "themnhanvien";
+	}
+	
+	@RequestMapping(value = "/sua-nhan-vien/{nvID}", method = RequestMethod.GET)
+	public String suaNhanVien(@PathVariable String nvID, ModelMap model, HttpServletRequest request, RedirectAttributes redirectAttrs){
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		
+		return "suanhanvien";
+	}
 }

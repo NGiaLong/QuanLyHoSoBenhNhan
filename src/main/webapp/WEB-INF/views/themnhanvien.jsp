@@ -13,55 +13,24 @@
 			<li><a href=""><svg class="glyph stroked home">
 						<use xlink:href="#stroked-home"></use></svg></a>
 			</li>
-			
 			<li><a href="/QuanLyHoSoBenhNhan/nhan-vien">Quản lý nhân viên</a></li>
-			<li><a href="/QuanLyHoSoBenhNhan/nhan-vien/ngung-hoat-dong">Ngừng hoạt động</a></li>
+			<li><a href="/QuanLyHoSoBenhNhan/nhan-vien/them-nhan-vien">Thêm nhân viên</a></li>
 		</ol>
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<br>
-		<c:if test="${success != null }">
+	<br>
+	<c:if test="${success != null }">
 			<div class="alert alert-success">${success }</div>
 		</c:if>
 		<c:if test="${error != null }">
 			<div class="alert alert-danger">${error }</div>
 		</c:if>
-		<h1>NGƯNG HOẠT ĐỘNG</h1>
+		<h1>THÊM NHÂN VIÊN</h1>
 	</div>
 	<hr>
 	<div class="content">
-		<div>
-			</br>
-		</div>
-		<div>
-			<table id="example" class="display">
-				<thead>
-					<th>STT</th>
-					<th>Mã nhân viên</th>
-					<th>Tên nhân viên</th>
-					<th></th>
-				</thead>
-				<tbody>
-					<%
-						int i = 1;
-					%>
-					<c:forEach var="listValue" items="${nVList}">
-						<tr>
-							<td><%=i%></td>
-							<td>${listValue.getMaNhanVien()}</td>
-							<td>${listValue.getTenNhanVien()}</td>
-							<td><a
-								href="/QuanLyHoSoBenhNhan/nhan-vien/tai-hoat-dong/${listValue.getMaNhanVien()}"
-								class="btn btn-info btn-block">Tái hoạt động hoạt động</a></td>
-						</tr>
-						<%
-							i++;
-						%>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+	
 	</div>
 </div>
 <jsp:include page="layouts/bot.jsp"></jsp:include>
