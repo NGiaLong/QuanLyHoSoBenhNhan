@@ -111,4 +111,17 @@ public class NhanVien {
 		super();
 	}
 
+	public NhanVien(String maNhanVien, String tenNhanVien, boolean gioiTinh, String ngaySinh, String diaChi,
+			String soDienThoai, String maChucVu) {
+		super();
+		this.maNhanVien = maNhanVien;
+		this.tenNhanVien = tenNhanVien;
+		this.gioiTinh = gioiTinh;
+		this.ngaySinh = ngaySinh;
+		this.diaChi = diaChi;
+		this.soDienThoai = soDienThoai;
+		this.maChucVu = maChucVu;
+	}
+	
+
 }
