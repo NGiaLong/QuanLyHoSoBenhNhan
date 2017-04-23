@@ -112,9 +112,9 @@
 								xlink:href="#stroked-chevron-right"></use></svg> Ngừng hoạt động
 					</a></li>
 					<li><a class=""
-						href="/QuanLyHoSoBenhNhan/nhan-vien/them-chuc-vu"> <svg
+						href="/QuanLyHoSoBenhNhan/nhan-vien/chuc-vu"> <svg
 								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Thêm chức vụ
+								xlink:href="#stroked-chevron-right"></use></svg> Quản lý chức vụ
 					</a></li>
 				</ul></li>
 			<li class="parent "><a

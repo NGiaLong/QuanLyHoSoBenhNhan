@@ -27,6 +27,11 @@ public class NhanVienController {
 	public ThemNhanVienBean themNhanVienBean() {
 		return new ThemNhanVienBean();
 	}
+	
+	@ModelAttribute("themChucVuBean")
+	public ThemChucVuBean themChucVuBean() {
+		return new ThemChucVuBean();
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String quanLyNhanVien(ModelMap model, HttpServletRequest request) {
@@ -81,10 +86,37 @@ public class NhanVienController {
 		return "redirect:/nhan-vien/ngung-hoat-dong";
 	}
 
-	@RequestMapping(value = "/them-chuc-vu", method = RequestMethod.GET)
+	@RequestMapping(value = "/chuc-vu", method = RequestMethod.GET)
 	public String themChucVu(ModelMap model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
+		ChucVuJDBC chucVuJDBC = (ChucVuJDBC) context.getBean("chucVuJDBC");
+		List<ChucVu> listCV = chucVuJDBC.getAll();
+		model.addAttribute("listCV", listCV);
 		return "themchucvu";
+	}
+	
+	@RequestMapping(value = "/chuc-vu", method = RequestMethod.POST)
+	public String themChucVuProcess(@ModelAttribute("SpringWeb") ThemChucVuBean themChucVuBean, ModelMap model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		ChucVuJDBC chucVuJDBC = (ChucVuJDBC) context.getBean("chucVuJDBC");
+		ChucVu cv = (ChucVu) chucVuJDBC.getLast();
+		String tmp = cv.getMaChucVu().substring(2).trim();
+		int i = Integer.parseInt(tmp) + 1;
+		if (i < 10)
+			tmp = "CV000" + i;
+		else if (i < 100)
+			tmp = "CV00" + i;
+		else if (i < 1000)
+			tmp = "CV0" + i;
+		else
+			tmp = "CV" + i;
+		int them = chucVuJDBC.add(new ChucVu(tmp, themChucVuBean.getTenChucVu()));
+		if(them == 1){
+			redirectAttrs.addFlashAttribute("success", "Thêm chức vụ thành công");
+		}else{
+			redirectAttrs.addFlashAttribute("error", "Thêm chức vụ thất bại");
+		}
+		return "redirect:/nhan-vien/chuc-vu";
 	}
 
 	@RequestMapping(value = "/them-nhan-vien", method = RequestMethod.GET)
