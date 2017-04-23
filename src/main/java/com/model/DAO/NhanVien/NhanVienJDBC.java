@@ -91,5 +91,18 @@ public class NhanVienJDBC implements NhanVienDAO {
 			return 0;
 		}
 	}
+	
+	@Override
+	public int sua(NhanVien nhanvien) {
+		String sql = "update NhanVien set TenNhanVien = ?, GioiTinh = ?, NgaySinh = ?, DiaChi = ?, SoDienThoai = ?, MaChucVu = ? where MaNhanVien = ? ";
+		try {
+			return jdbcTemplateObject.update(sql,
+					new Object[] { nhanvien.getTenNhanVien(), nhanvien.isGioiTinh(),
+							nhanvien.getNgaySinh(), nhanvien.getDiaChi(), nhanvien.getSoDienThoai(),
+							nhanvien.getMaChucVu(), nhanvien.getMaNhanVien() });
+		} catch (Exception e) {
+			return 0;
+		}
+	}
 
 }

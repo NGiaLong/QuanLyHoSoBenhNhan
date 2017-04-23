@@ -11,26 +11,78 @@
 	<div class="row">
 		<ol class="breadcrumb">
 			<li><a href=""><svg class="glyph stroked home">
-						<use xlink:href="#stroked-home"></use></svg></a>
-			</li>
-			<li><a href="/QuanLyHoSoBenhNhan/nhan-vien">Quản lý nhân viên</a></li>
-			<li><a href="/QuanLyHoSoBenhNhan/nhan-vien/them-chuc-vu">Thêm chức vụ</a></li>
+						<use xlink:href="#stroked-home"></use></svg></a></li>
+			<li><a href="/QuanLyHoSoBenhNhan/nhan-vien">Quản lý nhân
+					viên</a></li>
+			<li><a href="/QuanLyHoSoBenhNhan/nhan-vien/chuc-vu">Quản lý
+					chức vụ</a></li>
 		</ol>
 	</div>
 	<!--/.row-->
 	<div class="header">
-	<br>
-	<c:if test="${success != null }">
+		<br>
+		<c:if test="${success != null }">
 			<div class="alert alert-success">${success }</div>
 		</c:if>
 		<c:if test="${error != null }">
 			<div class="alert alert-danger">${error }</div>
 		</c:if>
-		<h1>THÊM CHỨC VỤ</h1>
+		<h1>QUẢN LÝ CHỨC VỤ</h1>
 	</div>
 	<hr>
 	<div class="content">
-	
+		<div class="row">
+			<div class="col-sm-6 ">
+				<form:form id="form" modelAttribute="themChucVuBean">
+					<div class="row">
+						<label class="control-label col-sm-4">Thêm chức vụ:</label>
+						<div class="input-group col-sm-8">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-briefcase"></i></span>
+							<form:input path="tenChucVu" type="text" class="form-control"
+								required="required" id="inputPhone" name="inputPhone"
+								placeholder="Tên chức vụ" />
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-sm-8"></div>
+						<a href="/QuanLyHoSoBenhNhan/nhan-vien" class="btn btn-default">Quay
+							lại</a>
+						<form:button type="submit" class="btn btn-primary">Thêm</form:button>
+					</div>
+				</form:form>
+			</div>
+			<div class="col-sm-6">
+				<table id="example" class="display">
+					<thead>
+						<th>STT</th>
+						<th>Mã chức vụ</th>
+						<th>Tên chức vụ</th>
+						<th></th>
+						<th></th>
+					</thead>
+					<tbody>
+						<%
+							int i = 1;
+						%>
+						<c:forEach var="listValue" items="${listCV}">
+							<tr>
+								<td><%=i%></td>
+								<td>${listValue.getMaChucVu()}</td>
+								<td>${listValue.getTenChucVu()}</td>
+								<td align="center"><a href=""
+									class="btn btn-info btn-block">Sửa</a></td>
+								<td align="center"><a href=""
+									class="btn btn-warning btn-block">Xóa</a></td>
+							</tr>
+							<%
+								i++;
+							%>
+						</c:forEach>
+					</tbody>
+			</div>
+		</div>
 	</div>
 </div>
 <jsp:include page="layouts/bot.jsp"></jsp:include>

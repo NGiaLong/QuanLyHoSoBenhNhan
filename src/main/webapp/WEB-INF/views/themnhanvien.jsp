@@ -103,8 +103,8 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-8"></div>
-				<a href="/QuanLyHoSoBenhNhan/nhan-vien"
-					class="btn btn-default">Quay lại</a>
+				<a href="/QuanLyHoSoBenhNhan/nhan-vien/huy"
+					class="btn btn-danger">Hủy</a>
 				<form:button type="submit" class="btn btn-primary">Thêm</form:button>
 			</div>
 

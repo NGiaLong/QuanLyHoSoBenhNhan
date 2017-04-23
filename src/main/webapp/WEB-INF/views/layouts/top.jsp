@@ -112,18 +112,18 @@
 								xlink:href="#stroked-chevron-right"></use></svg> Ngừng hoạt động
 					</a></li>
 					<li><a class=""
-						href="/QuanLyHoSoBenhNhan/nhan-vien/them-chuc-vu"> <svg
+						href="/QuanLyHoSoBenhNhan/nhan-vien/chuc-vu"> <svg
 								class="glyph stroked chevron-right"> <use
-								xlink:href="#stroked-chevron-right"></use></svg> Thêm chức vụ
+								xlink:href="#stroked-chevron-right"></use></svg> Quản lý chức vụ
 					</a></li>
 				</ul></li>
 			<li class="parent "><a
 				href="/QuanLyHoSoBenhNhan/thong-ke/benh-an"> <span
-					data-toggle="collapse" href="#sub-item-1"><svg
+					data-toggle="collapse" href="#sub-item-2"><svg
 							class="glyph stroked chevron-down"> <use
 							xlink:href="#stroked-chevron-down"></use></svg></span> Thống kê
 			</a>
-				<ul class="children collapse" id="sub-item-1">
+				<ul class="children collapse" id="sub-item-2">
 					<li><a class=""
 						href="/QuanLyHoSoBenhNhan/thong-ke/benh-an"> <svg
 								class="glyph stroked chevron-right"> <use
