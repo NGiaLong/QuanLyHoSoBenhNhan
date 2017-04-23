@@ -1,8 +1,11 @@
 package com.controller.ThongKe;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,26 +16,50 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.model.ChucVu;
+import com.model.NhanVien;
 import com.model.ThongKeBenhAn;
+import com.model.DAO.ChucVu.ChucVuJDBC;
+import com.model.DAO.NhanVien.NhanVienJDBC;
+import com.model.DAO.ThongKeBenhAn.ThongKeBenhAnJDBC;
 
 @Controller
+@RequestMapping(value="/thong-ke")
 public class ThongKeController {
 	private ApplicationContext context;
 
-	@RequestMapping(value = "/thongkebenhan", method = RequestMethod.GET)
-	public String staffmanagement(ModelMap model, HttpServletRequest request) {
+	@RequestMapping(value = "/benh-an", method = RequestMethod.GET)
+	public String getListTKBenhAn(ModelMap model, HttpServletRequest request) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
-		ArrayList<ThongKeBenhAn> benhAnList = new ArrayList<>();
-		benhAnList.add(new ThongKeBenhAn("BA0001", "Phan Văn Quang", new Date("2017/12/06"), "Trần Bá Trọng", "14h20"));
-		benhAnList.add(new ThongKeBenhAn("BA0002", "Phan Tấn Minh", new Date("2017/12/06"), "Trần Bá Trọng", "13h20"));
-		benhAnList.add(new ThongKeBenhAn("BA0003", "Nguyễn THành Nhân", new Date("2017/12/06"), "Trần Bá Trọng", "12h20"));
-		benhAnList.add(new ThongKeBenhAn("BA0004", "Lê Bá Hoàng", new Date("2017/12/06"), "Trần Bá Trọng", "14h20"));
-		benhAnList.add(new ThongKeBenhAn("BA0005", "Trần Đặng Hoàng Nguyên", new Date("2017/12/06"), "Trần Bá Trọng", "11h20"));
-		benhAnList.add(new ThongKeBenhAn("BA0006", "Lê Bá Khánh Thành", new Date("2017/12/06"), "Trần Bá Trọng", "10h20"));
-		benhAnList.add(new ThongKeBenhAn("BA0007", "Trần Văn Giáp", new Date("2017/12/06"), "Trần Bá Trọng", "9h20"));
-		benhAnList.add(new ThongKeBenhAn("BA0008", "Phạm Thị Duyên", new Date("2017/12/06"), "Trần Bá Trọng", "8h20"));
-		
+		ThongKeBenhAnJDBC thongkeJDBC = (ThongKeBenhAnJDBC) context.getBean("thongKeBenhAnJDBC");						
+		List<ThongKeBenhAn> benhAnList = thongkeJDBC.getList();		
 		model.addAttribute("benhAnList",benhAnList);
 		return "thongkebenhan";
 	}
+	
+	@RequestMapping(value = "/benh-an", method = RequestMethod.POST)
+	public String getListTKBenhAnByDate(HttpServletRequest request, ModelMap model) throws ParseException {		
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		ThongKeBenhAnJDBC thongkeJDBC = (ThongKeBenhAnJDBC) context.getBean("thongKeBenhAnJDBC");
+		List<ThongKeBenhAn> benhAnList;
+		String date = request.getParameter("dateThongKeBenhAn");
+		if (date != null && !"".equals(date)) {
+			int arrLength = date.split("/").length;
+			if(arrLength==1) benhAnList = thongkeJDBC.getByYear(Integer.parseInt(date));
+			if(arrLength==2) benhAnList = thongkeJDBC.getByMonth(Integer.parseInt(date.split("/")[0]), Integer.parseInt(date.split("/")[1]));
+			if(arrLength==3){				
+				Date dateResult = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+				String dateString = new SimpleDateFormat("yyyy-MM-dd").format(dateResult);
+				System.out.println(dateString);
+				benhAnList = thongkeJDBC.getByDate(dateString); 
+			}
+			else benhAnList = thongkeJDBC.getList();
+			System.out.println(arrLength);
+		} else {
+			benhAnList = thongkeJDBC.getList();
+		}
+		model.addAttribute("benhAnList",benhAnList);
+		return "thongkebenhan";
+	}
+	
 }

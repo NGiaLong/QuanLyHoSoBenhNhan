@@ -19,16 +19,15 @@ $(document).ready(
 						showButtonPanel : true,
 						dateFormat : 'mm/yy',
 						onChangeMonthYear : function(year, month, widget) {
-							setTimeout(function() {
-								$('.ui-datepicker-calendar').hide();
-							});
+							$('.ui-datepicker-calendar').hide();
+
 						},
 						onClose : function(dateText, inst) {
 							$(this).datepicker(
 									'setDate',
 									new Date(inst.selectedYear,
 											inst.selectedMonth, 1));
-
+							$('.ui-datepicker-calendar').hide();
 						}
 					}).click(function() {
 				$('.ui-datepicker-calendar').hide();
@@ -40,18 +39,18 @@ $(document).ready(
 						showButtonPanel : true,
 						dateFormat : 'yy',
 						onChangeMonthYear : function(year, month, widget) {
-							setTimeout(function() {
-								$('.ui-datepicker-calendar').hide();
-							});
+							console.log('here');
+							$('.ui-datepicker-calendar').hide();
 						},
 						onClose : function(dateText, inst) {
 							$(this).datepicker(
 									'setDate',
 									new Date(inst.selectedYear,
 											inst.selectedMonth, 1));
-
+							$('.ui-datepicker-calendar').hide();
 						}
 					}).click(function() {
+				console.log('here');
 				$('.ui-datepicker-calendar').hide();
 			});
 			$(".resetField").click(function() {
@@ -59,17 +58,22 @@ $(document).ready(
 			});
 			$("#date-option").change(function() {
 				var selected = this.value;
-				if(selected == 0) {
-					console.log(selected);
-					$('.searchField').addClass('date-picker').removeClass('date-picker-year date-picker-month');
+				if (selected == 0) {					
+					$('.date-picker').show();
+					$('.date-picker-year').removeClass('hasDatepicker').hide();
+					$('.date-picker-month').removeClass('hasDatepicker').hide();
 				}
-				if(selected == 1) {
-					console.log(selected);
-					$('.searchField').addClass('date-picker-month').removeClass('date-picker-year date-picker');
+				if (selected == 1) {					
+					$('.date-picker-month').show();
+					$('.date-picker-year').removeClass('hasDatepicker').hide();
+					$('.date-picker').removeClass('hasDatepicker').hide();
+					$('.ui-datepicker-calendar').hide();
 				}
-				if(selected == 2) {
-					console.log(selected);
-					$('.searchField').addClass('date-picker-year').removeClass('date-picker date-picker-month');
+				if (selected == 2) {					
+					$('.date-picker-year').show();
+					$('.date-picker').removeClass('hasDatepicker').hide();
+					$('.date-picker-month').removeClass('hasDatepicker').hide();
+					$('.ui-datepicker-calendar').hide();
 				}
 			});
 		});

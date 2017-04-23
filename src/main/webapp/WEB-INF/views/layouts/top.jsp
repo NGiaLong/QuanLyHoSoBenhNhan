@@ -117,6 +117,24 @@
 								xlink:href="#stroked-chevron-right"></use></svg> Thêm chức vụ
 					</a></li>
 				</ul></li>
+			<li class="parent "><a
+				href="/QuanLyHoSoBenhNhan/thong-ke/benh-an"> <span
+					data-toggle="collapse" href="#sub-item-1"><svg
+							class="glyph stroked chevron-down"> <use
+							xlink:href="#stroked-chevron-down"></use></svg></span> Thống kê
+			</a>
+				<ul class="children collapse" id="sub-item-1">
+					<li><a class=""
+						href="/QuanLyHoSoBenhNhan/thong-ke/benh-an"> <svg
+								class="glyph stroked chevron-right"> <use
+								xlink:href="#stroked-chevron-right"></use></svg> Thống kê bệnh án
+					</a></li>
+					<li><a class=""
+						href="/QuanLyHoSoBenhNhan/thong-ke/benh-nhan"> <svg
+								class="glyph stroked chevron-right"> <use
+								xlink:href="#stroked-chevron-right"></use></svg> Thống kê bệnh nhân
+					</a></li>
+				</ul></li>
 			
 		</ul>
 
