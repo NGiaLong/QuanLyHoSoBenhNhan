@@ -60,19 +60,19 @@ $(document).ready(
 				var selected = this.value;
 				if (selected == 0) {					
 					$('.date-picker').show();
-					$('.date-picker-year').removeClass('hasDatepicker').hide();
-					$('.date-picker-month').removeClass('hasDatepicker').hide();
+					$('.date-picker-year').hide();
+					$('.date-picker-month').hide();
 				}
 				if (selected == 1) {					
 					$('.date-picker-month').show();
-					$('.date-picker-year').removeClass('hasDatepicker').hide();
-					$('.date-picker').removeClass('hasDatepicker').hide();
+					$('.date-picker-year').hide();
+					$('.date-picker').hide();
 					$('.ui-datepicker-calendar').hide();
 				}
 				if (selected == 2) {					
 					$('.date-picker-year').show();
-					$('.date-picker').removeClass('hasDatepicker').hide();
-					$('.date-picker-month').removeClass('hasDatepicker').hide();
+					$('.date-picker').hide();
+					$('.date-picker-month').hide();
 					$('.ui-datepicker-calendar').hide();
 				}
 			});
