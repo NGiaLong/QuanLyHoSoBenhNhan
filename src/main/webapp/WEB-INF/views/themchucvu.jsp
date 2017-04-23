@@ -35,7 +35,7 @@
 			<div class="col-sm-6 ">
 				<form:form id="form" modelAttribute="themChucVuBean">
 					<div class="row">
-						<label class="control-label col-sm-4">Chức vụ:</label>
+						<label class="control-label col-sm-4">Thêm chức vụ:</label>
 						<div class="input-group col-sm-8">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-briefcase"></i></span>

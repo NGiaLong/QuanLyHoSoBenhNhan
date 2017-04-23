@@ -12,5 +12,6 @@ public interface NhanVienDAO {
 	public NhanVien getNVByMaNV(String maNV);
 	public NhanVien getLast();
 	public int add(NhanVien nhanvien);
+	public int sua(NhanVien nhanVien);
 	
 }

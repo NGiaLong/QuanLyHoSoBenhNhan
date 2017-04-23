@@ -27,7 +27,12 @@ public class NhanVienController {
 	public ThemNhanVienBean themNhanVienBean() {
 		return new ThemNhanVienBean();
 	}
-	
+
+	@ModelAttribute("suaNhanVienBean")
+	public SuaNhanVienBean suaNhanVienBean() {
+		return new SuaNhanVienBean();
+	}
+
 	@ModelAttribute("themChucVuBean")
 	public ThemChucVuBean themChucVuBean() {
 		return new ThemChucVuBean();
@@ -70,6 +75,12 @@ public class NhanVienController {
 		return "redirect:/nhan-vien";
 	}
 
+	@RequestMapping(value = "/huy", method = RequestMethod.GET)
+	public String huy(RedirectAttributes redirectAttrs) {
+		redirectAttrs.addFlashAttribute("error", "Hủy thành công");
+		return "redirect:/nhan-vien";
+	}
+
 	@RequestMapping(value = "/tai-hoat-dong/{nvID}", method = RequestMethod.GET)
 	public String taiHoatDongById(@PathVariable String nvID, ModelMap model, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
@@ -94,9 +105,10 @@ public class NhanVienController {
 		model.addAttribute("listCV", listCV);
 		return "themchucvu";
 	}
-	
+
 	@RequestMapping(value = "/chuc-vu", method = RequestMethod.POST)
-	public String themChucVuProcess(@ModelAttribute("SpringWeb") ThemChucVuBean themChucVuBean, ModelMap model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+	public String themChucVuProcess(@ModelAttribute("SpringWeb") ThemChucVuBean themChucVuBean, ModelMap model,
+			HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		ChucVuJDBC chucVuJDBC = (ChucVuJDBC) context.getBean("chucVuJDBC");
 		ChucVu cv = (ChucVu) chucVuJDBC.getLast();
@@ -111,9 +123,9 @@ public class NhanVienController {
 		else
 			tmp = "CV" + i;
 		int them = chucVuJDBC.add(new ChucVu(tmp, themChucVuBean.getTenChucVu()));
-		if(them == 1){
+		if (them == 1) {
 			redirectAttrs.addFlashAttribute("success", "Thêm chức vụ thành công");
-		}else{
+		} else {
 			redirectAttrs.addFlashAttribute("error", "Thêm chức vụ thất bại");
 		}
 		return "redirect:/nhan-vien/chuc-vu";
@@ -144,10 +156,13 @@ public class NhanVienController {
 			tmp = "NV0" + i;
 		else
 			tmp = "NV" + i;
-		int them = nhanVienJDBC.add(new NhanVien(tmp,themNhanVienBean.getTenNhanVien(), themNhanVienBean.isGioiTinh(),themNhanVienBean.getNgaySinh(), themNhanVienBean.getDiaChi(), themNhanVienBean.getSoDienThoai(), themNhanVienBean.getMaChucVu()));
-		if(them == 1){
-			redirectAttrs.addFlashAttribute("success", "Thêm nhân viên "+themNhanVienBean.getTenNhanVien()+" thành công");
-		}else{
+		int them = nhanVienJDBC.add(new NhanVien(tmp, themNhanVienBean.getTenNhanVien(), themNhanVienBean.isGioiTinh(),
+				themNhanVienBean.getNgaySinh(), themNhanVienBean.getDiaChi(), themNhanVienBean.getSoDienThoai(),
+				themNhanVienBean.getMaChucVu()));
+		if (them == 1) {
+			redirectAttrs.addFlashAttribute("success",
+					"Thêm nhân viên " + themNhanVienBean.getTenNhanVien() + " thành công");
+		} else {
 			redirectAttrs.addFlashAttribute("error", "Thêm nhân viên thất bại");
 		}
 		return "redirect:/nhan-vien";
@@ -157,7 +172,28 @@ public class NhanVienController {
 	public String suaNhanVien(@PathVariable String nvID, ModelMap model, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
-
+		NhanVienJDBC nhanVienJDBC = (NhanVienJDBC) context.getBean("nhanVienJDBC");
+		ChucVuJDBC chucVuJDBC = (ChucVuJDBC) context.getBean("chucVuJDBC");
+		List<ChucVu> listCV = chucVuJDBC.getAll();
+		NhanVien nV = nhanVienJDBC.getNVByMaNV(nvID);
+		model.addAttribute("listCV", listCV);
+		model.addAttribute("nV", nV);
 		return "suanhanvien";
+	}
+
+	@RequestMapping(value = "/sua-nhan-vien/{nvID}", method = RequestMethod.POST)
+	public String suaNhanVienProcess(@ModelAttribute("SpringWeb") SuaNhanVienBean suaNhanVienBean,
+			@PathVariable String nvID, ModelMap model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		NhanVienJDBC nhanVienJDBC = (NhanVienJDBC) context.getBean("nhanVienJDBC");
+		int sua = nhanVienJDBC.sua(new NhanVien(nvID, suaNhanVienBean.getTenNhanVien(), suaNhanVienBean.isGioiTinh(),
+				suaNhanVienBean.getNgaySinh(), suaNhanVienBean.getDiaChi(), suaNhanVienBean.getSoDienThoai(),
+				suaNhanVienBean.getMaChucVu()));
+		if (sua == 1) {
+			redirectAttrs.addFlashAttribute("success", "Sửa nhân viên thành công");
+		} else {
+			redirectAttrs.addFlashAttribute("error", "Sửa nhân viên thất bại");
+		}
+		return "redirect:/nhan-vien";
 	}
 }
