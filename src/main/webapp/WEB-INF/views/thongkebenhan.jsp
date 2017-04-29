@@ -16,6 +16,12 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
+		<c:if test="${success != null }">
+			<div class="alert alert-success">${success }</div>
+		</c:if>
+		<c:if test="${error != null }">
+			<div class="alert alert-danger">${error }</div>
+		</c:if>
 		<h1>THỐNG KÊ BỆNH ÁN</h1>
 	</div>
 	<hr>
@@ -23,25 +29,17 @@
 		<div class="row">
 			<form action="benh-an" method="post">
 				<div class="col-lg-12 form-inline">
-					Chọn ngày: 
-						<input type="text" id="dateThongKeBenhAn"
+					Chọn ngày: <input type="text" id="dateThongKeBenhAn"
 						name="dateThongKeBenhAn"
-						class="date-picker searchField form-control">
-						<input type="text" id="dateThongKeBenhAn"
-						name="dateThongKeBenhAn" style="display:none;"
-						class="date-picker-month  searchField form-control">
-						<input type="text" id="dateThongKeBenhAn"
-						name="dateThongKeBenhAn" style="display:none;"
-						class="date-picker-year searchField form-control">
-						
-						 <select
+						class="date-picker searchField form-control"> <select
 						class="form-control" name="dateType" id="date-option">
 						<option value="0">Theo ngày</option>
 						<option value="1">Theo tháng</option>
 						<option value="2">Theo năm</option>
 					</select>
 					<button type="submit" class="btn btn-primary">Tìm kiếm</button>
-					<button type="button" class="btn btn-default resetField">Đặt lại</button>
+					<button type="button" class="btn btn-default resetField">Đặt
+						lại</button>
 				</div>
 
 			</form>
@@ -72,8 +70,9 @@
 							<td>${listValue.getNgayKham() }</td>
 							<td>${listValue.getTenBenhNhan() }</td>
 							<td>${listValue.getGioKham() }</td>
-							<td><a href="" class="btn btn-primary btn-block">Chi
-									tiết </a></td>
+							<td><a
+								href="/QuanLyHoSoBenhNhan/thong-ke/benh-an/${listValue.getMaBenhAn()}"
+								class="btn btn-primary btn-block">Chi tiết </a></td>
 						</tr>
 						<%
 							i++;
