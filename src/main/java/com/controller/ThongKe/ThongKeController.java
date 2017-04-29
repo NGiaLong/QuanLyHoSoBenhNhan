@@ -82,13 +82,13 @@ public class ThongKeController {
 		BenhAnJDBC benhAnJDBC = (BenhAnJDBC) context.getBean("benhAnJDBC");
 		BenhAn benhAn = benhAnJDBC.getOne(maBA);
 		BenhNhanJDBC benhNhanJDBC = (BenhNhanJDBC) context.getBean("benhNhanJDBC");
-		BenhNhan benhNhan = benhNhanJDBC.getOne(benhAn.getMaBenhAn());
+		BenhNhan benhNhan = benhNhanJDBC.getOne(benhAn.getMaBenhNhan());
 		NhanVienJDBC nhanVienJDBC = (NhanVienJDBC) context.getBean("nhanVienJDBC");
 		NhanVien nhanVien = nhanVienJDBC.getNVByMaNV(benhAn.getMaNhanVienKham());
 		
 		model.addAttribute("benhAn", benhAn);
 		model.addAttribute("benhNhan", benhNhan);
 		model.addAttribute("nhanVien",nhanVien);
-		return "thongkebenhan";
+		return "chitietbenhan";
 	}
 }
