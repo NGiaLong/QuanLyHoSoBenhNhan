@@ -15,13 +15,7 @@
 		</ol>
 	</div>
 	<!--/.row-->
-	<div class="header">
-		<c:if test="${success != null }">
-			<div class="alert alert-success">${success }</div>
-		</c:if>
-		<c:if test="${error != null }">
-			<div class="alert alert-danger">${error }</div>
-		</c:if>
+	<div class="header">		
 		<h1>THỐNG KÊ BỆNH ÁN</h1>
 	</div>
 	<hr>
