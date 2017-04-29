@@ -29,6 +29,10 @@
 	<bean id="thongKeBenhAnJDBC" class="com.model.DAO.ThongKeBenhAn.ThongKeBenhAnJDBC">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	<!-- Definition for ThongKeBenhNhanJDBCTemplate bean -->
+	<bean id="thongKeBenhNhanJDBC" class="com.model.DAO.ThongKeBenhNhan.ThongKeBenhNhanJDBC">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 	<!-- Definition for BenhAnJDBCTemplate bean -->
 	<bean id="benhAnJDBC" class="com.model.DAO.BenhAn.BenhAnJDBC">
 		<property name="dataSource" ref="dataSource" />

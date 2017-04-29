@@ -27,6 +27,7 @@ import com.model.DAO.BenhNhan.BenhNhanJDBC;
 import com.model.DAO.ChucVu.ChucVuJDBC;
 import com.model.DAO.NhanVien.NhanVienJDBC;
 import com.model.DAO.ThongKeBenhAn.ThongKeBenhAnJDBC;
+import com.model.DAO.ThongKeBenhNhan.ThongKeBenhNhanJDBC;
 
 @Controller
 @RequestMapping(value = "/thong-ke")
@@ -39,6 +40,7 @@ public class ThongKeController {
 		ThongKeBenhAnJDBC thongkeJDBC = (ThongKeBenhAnJDBC) context.getBean("thongKeBenhAnJDBC");
 		List<ThongKeBenhAn> benhAnList = thongkeJDBC.getList();
 		model.addAttribute("benhAnList", benhAnList);
+		model.addAttribute("tongSo", benhAnList.size());
 		return "thongkebenhan";
 	}
 
@@ -71,6 +73,7 @@ public class ThongKeController {
 			benhAnList = thongkeJDBC.getList();
 		}
 		model.addAttribute("benhAnList", benhAnList);
+		model.addAttribute("tongSo", benhAnList.size());
 		return "thongkebenhan";
 	}
 
@@ -90,5 +93,15 @@ public class ThongKeController {
 		model.addAttribute("benhNhan", benhNhan);
 		model.addAttribute("nhanVien",nhanVien);
 		return "chitietbenhan";
+	}
+	
+	@RequestMapping(value = "/benh-nhan", method = RequestMethod.GET)
+	public String getListTKBenhNhan(ModelMap model, HttpServletRequest request) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		ThongKeBenhNhanJDBC thongkeJDBC = (ThongKeBenhNhanJDBC) context.getBean("thongKeBenhNhanJDBC");
+		List<BenhNhan> benhNhanList = thongkeJDBC.getList();
+		model.addAttribute("benhNhanList", benhNhanList);
+		model.addAttribute("tongSo", benhNhanList.size());
+		return "thongkebenhnhan";
 	}
 }

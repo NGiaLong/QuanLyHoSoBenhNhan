@@ -10,6 +10,7 @@ public class BenhNhan {
 	private boolean gioiTinh;
 	private String diaChi;
 	private String soDienThoai;
+	private String soLanKham;
 	public String getMaBenhNhan() {
 		return maBenhNhan;
 	}
@@ -51,6 +52,12 @@ public class BenhNhan {
 	}
 	public void setSoDienThoai(String soDienThoai) {
 		this.soDienThoai = soDienThoai;
+	}
+	public String getSoLanKham() {
+		return soLanKham;
+	}
+	public void setSoLanKham(String soLanKham) {
+		this.soLanKham = soLanKham;
 	}
 	public BenhNhan(String maBenhNhan, String tenBenhNhan, Date ngayTao, Date ngaySinh, boolean gioiTinh, String diaChi,
 			String soDienThoai) {

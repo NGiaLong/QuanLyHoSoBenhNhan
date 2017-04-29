@@ -15,22 +15,18 @@
 		</ol>
 	</div>
 	<!--/.row-->
-	<div class="header">		
-		<h1>THỐNG KÊ BỆNH ÁN</h1>
+	<div class="header">
+		<h1>THỐNG KÊ BỆNH NHÂN</h1>
 	</div>
 	<hr>
 	<div class="content">
 		<div class="row">
 			<form action="benh-an" method="post">
 				<div class="col-lg-12 form-inline">
-					Chọn ngày: <input type="text" id="dateThongKeBenhAn"
-						name="dateThongKeBenhAn"
-						class="date-picker searchField form-control"> <select
-						class="form-control" name="dateType" id="date-option">
-						<option value="0">Theo ngày</option>
-						<option value="1">Theo tháng</option>
-						<option value="2">Theo năm</option>
-					</select>
+					Chọn ngày: <input type="text" id="dateFrom" name="dateFrom"
+						class="date-picker searchField form-control"> <input
+						type="text" id="dateTo" name="dateTo"
+						class="date-picker searchField form-control">
 					<button type="submit" class="btn btn-primary">Tìm kiếm</button>
 					<button type="button" class="btn btn-default resetField">Đặt
 						lại</button>
@@ -45,27 +41,25 @@
 			<table id="example" class="display">
 				<thead>
 					<th>STT</th>
-					<th>Mã bệnh án</th>
-					<th>Nhân viên khám</th>
-					<th>Ngày khám</th>
+					<th>Mã bệnh nhân</th>
 					<th>Tên bệnh nhân</th>
-					<th>Giờ khám</th>
+					<th>Ngày sinh</th>
+					<th>Số lần khám</th>					
 					<th></th>
 				</thead>
 				<tbody>
 					<%
 						int i = 1;
 					%>
-					<c:forEach var="listValue" items="${benhAnList}">
+					<c:forEach var="listValue" items="${benhNhanList}">
 						<tr>
 							<td><%=i%></td>
-							<td>${listValue.getMaBenhAn()}</td>
-							<td>${listValue.getTenNhanVien()}</td>
-							<td>${listValue.getNgayKham() }</td>
-							<td>${listValue.getTenBenhNhan() }</td>
-							<td>${listValue.getGioKham() }</td>
+							<td>${listValue.getMaBenhNhan()}</td>
+							<td>${listValue.getTenBenhNhan()}</td>
+							<td>${listValue.getNgaySinh() }</td>
+							<td>${listValue.getSoLanKham() }</td>							
 							<td><a
-								href="/QuanLyHoSoBenhNhan/thong-ke/benh-an/${listValue.getMaBenhAn()}"
+								href="/QuanLyHoSoBenhNhan/thong-ke/benh-an/${listValue.getMaBenhNhan()}"
 								class="btn btn-primary btn-block">Chi tiết </a></td>
 						</tr>
 						<%
@@ -75,7 +69,7 @@
 				</tbody>
 			</table>
 		</div>
-		<h3><span class="label label-info">Tổng số bệnh án: ${tongSo}</span></h3>
+		<h3><span class="label label-info">Tổng số bệnh nhân: ${tongSo}</span></h3>
 	</div>
 </div>
 <jsp:include page="layouts/bot.jsp"></jsp:include>
