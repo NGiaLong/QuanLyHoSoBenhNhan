@@ -33,8 +33,18 @@ public class ThongKeBenhNhanJDBC implements ThongKeBenhNhanDAO {
 
 	@Override
 	public List<BenhNhan> getByDate(String dateFrom, String dateTo) {
-		String sql = "SELECT ba.MaBenhAnChiTiet, nv.MaNhanVien, nv.TenNhanVien, bn.MaBenhNhan,bn.TenBenhNhan, ba.NgayKham, ba. GioKham"
-				+ " FROM dbo.BENHANCHITIET ba, dbo.BENHNHAN bn, dbo.NHANVIEN nv WHERE ba.MaBenhNhan = bn.MaBenhNhan AND ba.MaNhanVienKham = nv.MaNhanVien AND ba.NgayKham = '"+dateFrom+"'";
+		String sql = "";
+		if(!"".equals(dateFrom)&&!"".equals(dateTo)){
+			sql = "SELECT bn.MaBenhNhan, bn.TenBenhNhan,bn.NgaySinh, COUNT(ba.MaBenhAnChiTiet) as 'SoLanKham' "
+					+ "FROM BENHNHAN bn, BENHANCHITIET ba WHERE  bn.MaBenhNhan = ba.MaBenhNhan "
+					+ "AND (ba.NgayKham BETWEEN '"+dateFrom+"' AND '"+dateTo+"') GROUP BY bn.MaBenhNhan, bn.TenBenhNhan, bn.NgaySinh ";
+		} else if(!"".equals(dateFrom)&&"".equals(dateTo)){
+			sql = "SELECT bn.MaBenhNhan, bn.TenBenhNhan,bn.NgaySinh, COUNT(ba.MaBenhAnChiTiet) as 'SoLanKham' FROM BENHNHAN bn, BENHANCHITIET ba "
+					+ "WHERE  bn.MaBenhNhan = ba.MaBenhNhan AND (ba.NgayKham >= '"+dateFrom+"') GROUP BY bn.MaBenhNhan, bn.TenBenhNhan, bn.NgaySinh ";
+		} else {
+			sql = "SELECT bn.MaBenhNhan, bn.TenBenhNhan,bn.NgaySinh, COUNT(ba.MaBenhAnChiTiet) as 'SoLanKham' FROM BENHNHAN bn, BENHANCHITIET ba "
+					+ "WHERE  bn.MaBenhNhan = ba.MaBenhNhan AND (ba.NgayKham <= '"+dateTo+"') GROUP BY bn.MaBenhNhan, bn.TenBenhNhan, bn.NgaySinh ";
+		}		
 		try {
 			List<BenhNhan> listTKBenhNhan = jdbcTemplateObject.query(sql, new ThongKeBenhNhanMapper());
 			return listTKBenhNhan;

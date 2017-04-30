@@ -31,5 +31,11 @@ public class BenhAnJDBC implements BenhAnDAO {
 			return null;
 		}
 	}
+
+	@Override
+	public BenhAn getByMaBN(String maBN) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

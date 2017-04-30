@@ -15,6 +15,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.model.BenhAn;
@@ -77,7 +78,6 @@ public class ThongKeController {
 		return "thongkebenhan";
 	}
 
-
 	@RequestMapping(value = "/benh-an/{maBA}", method = RequestMethod.GET)
 	public String getChiTietByMaBA(@PathVariable String maBA, ModelMap model, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
@@ -88,13 +88,13 @@ public class ThongKeController {
 		BenhNhan benhNhan = benhNhanJDBC.getOne(benhAn.getMaBenhNhan());
 		NhanVienJDBC nhanVienJDBC = (NhanVienJDBC) context.getBean("nhanVienJDBC");
 		NhanVien nhanVien = nhanVienJDBC.getNVByMaNV(benhAn.getMaNhanVienKham());
-		
+
 		model.addAttribute("benhAn", benhAn);
 		model.addAttribute("benhNhan", benhNhan);
-		model.addAttribute("nhanVien",nhanVien);
+		model.addAttribute("nhanVien", nhanVien);
 		return "chitietbenhan";
 	}
-	
+
 	@RequestMapping(value = "/benh-nhan", method = RequestMethod.GET)
 	public String getListTKBenhNhan(ModelMap model, HttpServletRequest request) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
@@ -104,4 +104,57 @@ public class ThongKeController {
 		model.addAttribute("tongSo", benhNhanList.size());
 		return "thongkebenhnhan";
 	}
+
+	@RequestMapping(value = "/benh-nhan", method = RequestMethod.POST)
+	public String getListTKBenhNhanByDate(HttpServletRequest request, ModelMap model) throws ParseException {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		ThongKeBenhNhanJDBC thongkeJDBC = (ThongKeBenhNhanJDBC) context.getBean("thongKeBenhNhanJDBC");
+		List<BenhNhan> benhNhanList;
+		String dateFrom = request.getParameter("dateFrom");
+		String dateTo = request.getParameter("dateTo");
+
+		System.out.println("DateFrom" + dateFrom);
+		if ("".equals(dateFrom) && "".equals(dateTo)) {
+			benhNhanList = thongkeJDBC.getList();
+		} else {
+			if(!"".equals(dateFrom)){
+				Date dateResult1 = new SimpleDateFormat("dd/MM/yyyy").parse(dateFrom);
+				dateFrom = new SimpleDateFormat("yyyy-MM-dd").format(dateResult1);
+			} 
+			if(!"".equals(dateTo)){
+				Date dateResult2 = new SimpleDateFormat("dd/MM/yyyy").parse(dateTo);
+				dateTo = new SimpleDateFormat("yyyy-MM-dd").format(dateResult2);
+			}			
+			benhNhanList = thongkeJDBC.getByDate(dateFrom, dateTo);			
+			if (!"".equals(dateFrom) && "".equals(dateTo)) {
+				model.addAttribute("dateFrom",dateFrom);
+			} else if ("".equals(dateFrom) && !"".equals(dateTo)) {
+				model.addAttribute("dateTo",dateTo);
+			} else {
+				model.addAttribute("dateFrom",dateFrom);
+				model.addAttribute("dateTo",dateTo);
+			}
+		}
+		model.addAttribute("benhNhanList", benhNhanList);
+		model.addAttribute("tongSo", benhNhanList.size());
+		return "thongkebenhnhan";
+	}
+	
+	@RequestMapping(value = "/benh-nhan/{maBN}", method = RequestMethod.GET)
+	public String getChiTietByMaBN(@PathVariable String maBN, ModelMap model, HttpServletRequest request,
+			RedirectAttributes redirectAttrs, @RequestParam("dateFrom") String dateFrom,@RequestParam("dateTo") String dateTo) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		BenhAnJDBC benhAnJDBC = (BenhAnJDBC) context.getBean("benhAnJDBC");
+		BenhAn benhAn = benhAnJDBC.getByMaBN(maBN);
+		BenhNhanJDBC benhNhanJDBC = (BenhNhanJDBC) context.getBean("benhNhanJDBC");
+		BenhNhan benhNhan = benhNhanJDBC.getOne(benhAn.getMaBenhNhan());
+		NhanVienJDBC nhanVienJDBC = (NhanVienJDBC) context.getBean("nhanVienJDBC");
+		NhanVien nhanVien = nhanVienJDBC.getNVByMaNV(benhAn.getMaNhanVienKham());
+
+		model.addAttribute("benhAn", benhAn);
+		model.addAttribute("benhNhan", benhNhan);
+		model.addAttribute("nhanVien", nhanVien);
+		return "chitietbenhan";
+	}
+	
 }

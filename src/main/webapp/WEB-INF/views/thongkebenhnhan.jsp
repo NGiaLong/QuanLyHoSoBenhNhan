@@ -21,7 +21,7 @@
 	<hr>
 	<div class="content">
 		<div class="row">
-			<form action="benh-an" method="post">
+			<form action="benh-nhan" method="post">
 				<div class="col-lg-12 form-inline">
 					Chọn ngày: <input type="text" id="dateFrom" name="dateFrom"
 						class="date-picker searchField form-control"> <input
@@ -44,7 +44,7 @@
 					<th>Mã bệnh nhân</th>
 					<th>Tên bệnh nhân</th>
 					<th>Ngày sinh</th>
-					<th>Số lần khám</th>					
+					<th>Số lần khám</th>
 					<th></th>
 				</thead>
 				<tbody>
@@ -57,10 +57,27 @@
 							<td>${listValue.getMaBenhNhan()}</td>
 							<td>${listValue.getTenBenhNhan()}</td>
 							<td>${listValue.getNgaySinh() }</td>
-							<td>${listValue.getSoLanKham() }</td>							
-							<td><a
-								href="/QuanLyHoSoBenhNhan/thong-ke/benh-an/${listValue.getMaBenhNhan()}"
-								class="btn btn-primary btn-block">Chi tiết </a></td>
+							<td>${listValue.getSoLanKham() }</td>
+							<c:if test="${dateFrom == null && dateTo == null }">
+								<td><a
+									href="/QuanLyHoSoBenhNhan/thong-ke/benh-an/${listValue.getMaBenhNhan()}"
+									class="btn btn-primary btn-block">Chi tiết </a></td>
+							</c:if>
+							<c:if test="${dateFrom != null && dateTo == null }">
+								<td><a
+									href="/QuanLyHoSoBenhNhan/thong-ke/benh-an/${listValue.getMaBenhNhan()}?dateFrom=${dateFrom}"
+									class="btn btn-primary btn-block">Chi tiết </a></td>
+							</c:if>
+							<c:if test="${dateFrom == null && dateTo != null }">
+								<td><a
+									href="/QuanLyHoSoBenhNhan/thong-ke/benh-an/${listValue.getMaBenhNhan()}?dateTo=${dateTo}"
+									class="btn btn-primary btn-block">Chi tiết </a></td>
+							</c:if>
+							<c:if test="${dateFrom != null && dateTo != null }">
+								<td><a
+									href="/QuanLyHoSoBenhNhan/thong-ke/benh-an/${listValue.getMaBenhNhan()}?dateFrom=${dateFrom}&?dateTo=${dateTo}"
+									class="btn btn-primary btn-block">Chi tiết </a></td>
+							</c:if>
 						</tr>
 						<%
 							i++;
@@ -69,7 +86,9 @@
 				</tbody>
 			</table>
 		</div>
-		<h3><span class="label label-info">Tổng số bệnh nhân: ${tongSo}</span></h3>
+		<h3>
+			<span class="label label-info">Tổng số bệnh nhân: ${tongSo}</span>
+		</h3>
 	</div>
 </div>
 <jsp:include page="layouts/bot.jsp"></jsp:include>
